@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "serve": "vue-cli-service serve",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "axios": "^0.19.0",
     "better-scroll": "^1.15.2",
     "core-js": "^2.6.5",
+    "react-scripts": "^5.0.1",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.0.3"
