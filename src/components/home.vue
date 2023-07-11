@@ -162,8 +162,15 @@ export default {
       this.flag = true;
     }, 1300);
     // 图片懒加载
-    this.imgUrl = this.$config.BACKGROUND_IMG_URL;
+    this.imgUrl = "src/assets/pic/picture.jpg";
     var img = new Image();
+    img.onload = function() {
+      console.log('路径有效');
+    };
+
+    img.onerror = function() {
+      console.log('路径无效');
+    };
     img.src = this.imgUrl;
     img.onload = () => {
       this.imgLoded = true;
