@@ -15,10 +15,11 @@
     ></a>
 
     <!-- 中间LOGO部分 -->
-    <div
-      :style="{ background: `url(${imgUrl})` }"
-      :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
-    >
+    <div>
+      <img
+          :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
+          src="../assets/pic/picture.jpg"
+      />
       <div :class="['img_shadow', { img_shadow_show: imgLoded }]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
         <img
@@ -162,16 +163,9 @@ export default {
       this.flag = true;
     }, 1300);
     // 图片懒加载
-    this.imgUrl = "src/assets/pic/picture.jpg";
+    String imgUrl = "src/assets/local-image.jpg";
     var img = new Image();
-    img.onload = function() {
-      console.log('路径有效');
-    };
-
-    img.onerror = function() {
-      console.log('路径无效');
-    };
-    img.src = this.imgUrl;
+    img.src = imgUrl;
     img.onload = () => {
       this.imgLoded = true;
     };
