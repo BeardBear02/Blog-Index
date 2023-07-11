@@ -165,9 +165,6 @@ export default {
     this.imgUrl = this.$config.BACKGROUND_IMG_URL;
     var img = new Image();
     img.src = this.imgUrl;
-    img.onload = () => {
-      this.imgLoded = true;
-    };
     this.slogan = this.$config.SLOGAN;
     this.i = randomNum(0, this.slogan.length - 1);
   }
