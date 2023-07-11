@@ -95,7 +95,6 @@ export default {
       i: 0,
       centerShow: false, // 导航抽屉显示状态
       imgLoded: false, // 背景图片加载状态
-      imgUrl: ""
     };
   },
   components: {
@@ -163,12 +162,6 @@ export default {
       this.flag = true;
     }, 1300);
     // 图片懒加载
-    String imgUrl = "src/assets/local-image.jpg";
-    var img = new Image();
-    img.src = imgUrl;
-    img.onload = () => {
-      this.imgLoded = true;
-    };
     this.slogan = this.$config.SLOGAN;
     this.i = randomNum(0, this.slogan.length - 1);
   }
