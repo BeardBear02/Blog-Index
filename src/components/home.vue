@@ -2,29 +2,28 @@
   <div id="home" @mousewheel="handleMouseWheel" v-swipeup="showCenter">
     <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
     <div
-      class="mask_ban_touch"
-      v-if="!flag"
-      style="width: 100%; height: 100%; z-index: 999; position: absolute"
+        class="mask_ban_touch"
+        v-if="!flag"
+        style="width: 100%; height: 100%; z-index: 999; position: absolute"
     ></div>
 
     <!-- github 徽标 -->
     <a
-      v-if="$config.GITHUB"
-      class="github mdi mdi-github-circle"
-      :href="$config.GITHUB"
+        v-if="$config.GITHUB"
+        class="github mdi mdi-github-circle"
+        :href="$config.GITHUB"
     ></a>
 
     <!-- 中间LOGO部分 -->
-    <div>
-      <img
-          :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
-          src="../assets/pic/picture.jpg"
-      />
+    <div
+        :style="{ background: `url(${require('@/assets/pic/picture.jpg')})` }"
+        :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
+    >
       <div :class="['img_shadow', { img_shadow_show: imgLoded }]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
         <img
-          :class="['R_logo', { R_logo_top: flag }]"
-          src="../assets/logo.svg"
+            :class="['R_logo', { R_logo_top: flag }]"
+            src="../assets/logo.svg"
         />
         <div :class="['hello', { hello_bottom: flag }]">
           <div>{{ slogan[i] }}</div>
@@ -37,9 +36,9 @@
 
     <!-- 上下滑动指示器 -->
     <div
-      :class="['bottom', { bottom_show: flag }]"
-      style="cursor: pointer"
-      @click="centerShow = !centerShow"
+        :class="['bottom', { bottom_show: flag }]"
+        style="cursor: pointer"
+        @click="centerShow = !centerShow"
     >
       <div class="bottom-icon">
         <transition name="fade">
@@ -52,11 +51,11 @@
 
     <!-- 备案号 -->
     <a
-      class="record_number"
-      :class="{ record_number_show: flag }"
-      href="http://beian.miit.gov.cn/"
-      v-if="recordNumber"
-      >{{ recordNumber }}</a
+        class="record_number"
+        :class="{ record_number_show: flag }"
+        href="http://beian.miit.gov.cn/"
+        v-if="recordNumber"
+    >{{ recordNumber }}</a
     >
 
     <!-- 导航抽屉 -->
@@ -95,6 +94,7 @@ export default {
       i: 0,
       centerShow: false, // 导航抽屉显示状态
       imgLoded: false, // 背景图片加载状态
+      imgUrl: ""
     };
   },
   components: {
@@ -124,10 +124,10 @@ export default {
         } else {
           this._jieliu(() => {
             this.$refs.center.scroller.scrollBy(
-              0,
-              100,
-              500,
-              "cubic-bezier(0.23, 1, 0.32, 1)"
+                0,
+                100,
+                500,
+                "cubic-bezier(0.23, 1, 0.32, 1)"
             );
           }, 500);
         }
@@ -138,10 +138,10 @@ export default {
         } else {
           this._jieliu(() => {
             this.$refs.center.scroller.scrollBy(
-              0,
-              -100,
-              500,
-              "cubic-bezier(0.23, 1, 0.32, 1)"
+                0,
+                -100,
+                500,
+                "cubic-bezier(0.23, 1, 0.32, 1)"
             );
           }, 500);
         }
@@ -162,6 +162,12 @@ export default {
       this.flag = true;
     }, 1300);
     // 图片懒加载
+    this.imgUrl = this.$config.BACKGROUND_IMG_URL;
+    var img = new Image();
+    img.src = this.imgUrl;
+    img.onload = () => {
+      this.imgLoded = true;
+    };
     this.slogan = this.$config.SLOGAN;
     this.i = randomNum(0, this.slogan.length - 1);
   }
